@@ -1,3 +1,4 @@
+import json
 from typing import Any, Optional
 
 
@@ -39,5 +40,7 @@ def search_phone(content: Any, name: str) -> Optional[str]:
     """
 
     # пиши свой код здесь
-
-    return None
+    import re
+    content = str(content)
+    result = re.findall("{'name'.*:.*'%s',.*'phone'.*:.*'(.*)'}" % name, content)
+    return result[0] if result else None
